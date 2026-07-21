@@ -150,7 +150,7 @@ export const SKILL_GROUPS = [
 export const PROJECTS = [
   {
     id: 'gcs',
-    meta: 'Project 01 / Team Sammard',
+    meta: 'Project 01',
     title: 'Ground Control Software',
     repo: 'https://github.com/SciAditya03/ground-control-dashboard',
     techTags: ['React.js', 'Telemetry', 'GPS', '3D Mapping'],
@@ -167,7 +167,7 @@ export const PROJECTS = [
   },
   {
     id: 'aroham',
-    meta: 'Project 02 / Team Aroham',
+    meta: 'Project 02',
     title: 'AI Rockfall Prediction',
     repo: 'https://github.com/SciAditya03/Aroham-SIH',
     techTags: ['Python', 'Scikit-learn', 'Flask', 'IoT Edge'],
