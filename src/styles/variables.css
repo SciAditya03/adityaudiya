@@ -1,0 +1,18 @@
+/* ============ DESIGN TOKENS ============ */
+:root {
+  --walnut: #100904;
+  --bark: #241811;
+  --bark-2: #2c1e15;
+  --cork: #40372e;
+  --cork-soft: #362c22;
+  --drift: #9c8b78;
+  --drift-dim: #6c5f51;
+  --cream: #ffedd7;
+  --body-copy: #d8c5ae;
+  --ember: #dc5000;
+  --ember-dim: rgba(220, 80, 0, 0.16);
+  --sec-1: #100904;
+  --sec-2: #170f0a;
+  --sec-3: #1c130d;
+  --sec-4: #140d08;
+}

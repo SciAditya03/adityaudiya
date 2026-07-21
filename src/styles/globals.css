@@ -1,0 +1,56 @@
+@import './variables.css';
+@import './animations.css';
+@import './mixins.css';
+
+/* ============ RESET & BASE ============ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--walnut);
+  color: var(--cream);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  cursor: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font-family: inherit;
+  cursor: none;
+  background: none;
+  border: none;
+  color: inherit;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+ul {
+  list-style: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+  button, a { cursor: pointer; }
+}
+
+/* ============ SHARED SECTION LAYOUT ============
+   Every <Section> uses this base padding; kept global since `section` is a
+   semantic element used across every section component. */
+section {
+  padding: 120px 48px;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  section { padding: 80px 22px; }
+}

@@ -1,0 +1,69 @@
+.card {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 32px;
+  align-items: center;
+  padding: 36px;
+  border: 1px solid var(--cork);
+  border-radius: 12px;
+  max-width: 760px;
+  
+  /* --- ADDED: Slight creamy background --- */
+  /* Option 1: Subtle transparent cream (Recommended for dark theme) */
+  background: rgba(245, 235, 220, 0.04); 
+  
+  /* Option 2: If you want a solid, darker creamy-brown color, use this instead: */
+  /* background: #1c1612; */
+}
+
+.logo {
+  width: 96px;
+  height: 96px;
+  border-radius: 8px;
+  border: 1px solid var(--cork);
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: -0.005em;
+}
+
+.location {
+  font-size: 13px;
+  color: var(--drift);
+  margin-bottom: 16px;
+}
+
+.degree {
+  font-size: 15px;
+  color: var(--body-copy);
+}
+
+.degree strong {
+  color: var(--cream);
+  font-weight: 500;
+}
+
+.year {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ember);
+  margin-top: 10px;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    grid-template-columns: 72px 1fr;
+    gap: 22px;
+    padding: 26px;
+  }
+  .logo {
+    width: 72px;
+    height: 72px;
+  }
+}

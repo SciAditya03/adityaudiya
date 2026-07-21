@@ -1,0 +1,28 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--cork);
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  transition: all 0.3s ease;
+}
+.pill:hover {
+  background: var(--bark);
+  border-color: var(--ember);
+  transform: translateY(-2px);
+}
+.pill i {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.concept {
+  border-style: dashed;
+  color: var(--body-copy);
+}

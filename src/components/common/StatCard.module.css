@@ -1,0 +1,19 @@
+.number {
+  font-size: clamp(42px, 5.4vw, 66px);
+  font-weight: 500;
+  line-height: 0.95;
+  display: flex;
+  align-items: baseline;
+}
+.suffix {
+  font-size: 0.5em;
+  color: var(--ember);
+  margin-left: 4px;
+}
+.label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--drift-dim);
+  margin-top: 12px;
+}

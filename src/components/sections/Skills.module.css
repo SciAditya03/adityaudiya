@@ -1,0 +1,174 @@
+.section {
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.groups {
+  display: block;
+  margin-top: 60px;
+}
+
+.group {
+  margin-top: 48px;
+}
+
+.group:first-child {
+  margin-top: 0;
+}
+
+.groupTitle {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--drift);
+  margin-bottom: 18px;
+  padding-left: 4px;
+}
+
+/* --- Strip shell --- */
+.stripOuter {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.97);
+  border-top: 3px solid #9333ea;
+  border-bottom: 3px solid #ec4899;
+  border-radius: 4px;
+  padding: 20px 0;
+  transform: rotate(var(--strip-rotate, -1.5deg));
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.stripTrack {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  width: max-content;
+  will-change: transform;
+  padding: 0 24px;
+  /* Continuous infinite animation */
+  animation: marquee var(--duration, 60s) linear infinite;
+  animation-direction: var(--direction, normal);
+}
+
+/* Pause on hover for perfect readability */
+.stripOuter:hover .stripTrack {
+  animation-play-state: paused;
+}
+
+.skillItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 8px 16px;
+  background: rgba(245, 245, 245, 0.8);
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skillItem:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.skillName {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 16px;
+  color: #111111;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.iconPlaceholder {
+  width: 30px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* 
+  Seamless Marquee Animation 
+  Note: 'linear' is mathematically required for a truly seamless infinite loop 
+  without visible speed hiccups at the reset point. The "premium" feel comes 
+  from the very slow duration (60s+) and GPU acceleration.
+*/
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Move exactly 50% because the content array is duplicated */
+    transform: translateX(-50%);
+  }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .stripTrack {
+    animation: none !important;
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .group {
+    margin-top: 32px;
+  }
+
+  .stripOuter {
+    padding: 12px 0;
+    transform: rotate(calc(var(--strip-rotate, -1.5deg) * 0.5));
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+  }
+
+  .stripTrack {
+    gap: 28px;
+    padding: 0 16px;
+  }
+
+  .skillItem {
+    gap: 8px;
+    padding: 6px 12px;
+  }
+
+  .skillName {
+    font-size: 13px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .iconPlaceholder {
+    width: 20px;
+    height: 20px;
+  }
+}

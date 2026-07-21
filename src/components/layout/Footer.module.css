@@ -1,0 +1,37 @@
+.sidebar {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: right center;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--drift-dim);
+  z-index: 50;
+  pointer-events: none;
+}
+
+.bottom {
+  margin-top: 110px;
+  padding-top: 28px;
+  border-top: 1px dashed var(--cork);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--drift-dim);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .bottom {
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+  }
+}

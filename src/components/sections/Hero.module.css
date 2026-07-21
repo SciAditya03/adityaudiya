@@ -1,0 +1,293 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 200px 24px 90px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 38%, rgba(56, 36, 22, 0.5) 0%, transparent 62%);
+  pointer-events: none;
+}
+
+/* ============ MARQUEE BAND ============ */
+.marquee {
+  position: relative;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transform: rotate(-2.5deg);
+  pointer-events: none;
+  contain: layout style paint;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.row {
+  overflow: hidden;
+  height: 40px;
+  width: 100vw;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  align-items: center;
+  animation: marquee linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.track.reverse {
+  animation-direction: reverse;
+}
+
+/* CRITICAL FIX: Each set spans full viewport width */
+.set {
+  display: flex;
+  gap: 14px;
+  padding-right: 14px;
+  flex-shrink: 0;
+  width: 100vw; /* Forces each set to be exactly viewport width */
+  justify-content: space-around; /* Distributes tags evenly across the width */
+  align-items: center;
+}
+
+/* Seamless loop: translate exactly one set width (100vw) */
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-100vw, 0, 0); }
+}
+
+/* ============ FOREGROUND CONTENT ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 720px;
+  margin-top: -200px;
+}
+
+.topLabel {
+  position: relative;
+  z-index: 2;
+  order: -1;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--drift-dim);
+  margin-bottom: 34px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.topLabel::before,
+.topLabel::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--cork);
+}
+
+.profilePhoto {
+  width: 208px;
+  height: 208px;
+  border: 1px solid var(--cork);
+  background: var(--bark);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 16px var(--walnut), 0 0 0 17px rgba(64, 55, 46, 0.55),
+    0 0 90px rgba(220, 80, 0, 0.16);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.profilePhoto:hover {
+  transform: scale(1.04);
+}
+.profilePhoto img {
+  filter: grayscale(15%) contrast(1.04);
+}
+
+.name {
+  margin-top: 40px;
+  font-size: clamp(38px, 6.6vw, 70px);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+}
+
+.tagline {
+  margin-top: 20px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--drift);
+  max-width: 560px;
+}
+
+/* ============ STATS ============ */
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-top: 34px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.statValue {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1;
+}
+.statLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--drift-dim);
+}
+
+/* ============ CTAs ============ */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 44px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta {
+  padding: 14px 28px;
+  border: 1px solid var(--cork);
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cream);
+  background: rgba(16, 9, 4, 0.72);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+.cta:hover {
+  border-color: var(--ember);
+  background: var(--ember-dim);
+  transform: translateY(-2px);
+}
+.ctaPrimary {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--walnut);
+  font-weight: 600;
+}
+.ctaPrimary:hover {
+  background: #f05a06;
+  border-color: #f05a06;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+  margin-left: 6px;
+}
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--cork);
+  border-radius: 50%;
+  color: var(--drift);
+  font-size: 15px;
+  background: rgba(16, 9, 4, 0.72);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+.social:hover {
+  border-color: var(--ember);
+  color: var(--ember);
+  background: var(--ember-dim);
+  transform: translateY(-2px);
+}
+
+/* ============ SCROLL HINT ============ */
+.scrollHint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--drift-dim);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.scrollHint::after {
+  content: '';
+  width: 1px;
+  height: 36px;
+  background: var(--drift-dim);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%, 100% { transform: scaleY(0.3); transform-origin: top; }
+  50%      { transform: scaleY(1);   transform-origin: top; }
+}
+
+@media (max-width: 900px) {
+  .marquee { gap: 14px; }
+  .row { height: 34px; }
+  .row:nth-child(1),
+  .row:nth-child(4) { display: none; }
+  .content { margin-top: -76px; }
+  
+  .set {
+    width: 100vw;
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 130px 20px 80px; }
+  .content { margin-top: -62px; }
+  .profilePhoto {
+    width: 150px;
+    height: 150px;
+    box-shadow: 0 0 0 12px var(--walnut), 0 0 0 13px rgba(64, 55, 46, 0.55),
+      0 0 70px rgba(220, 80, 0, 0.16);
+  }
+  .stats { gap: 28px; }
+  .statValue { font-size: 22px; }
+  .actions { gap: 12px; }
+  .cta { padding: 12px 22px; }
+  .socials { margin-left: 0; }
+  
+  .set {
+    gap: 10px;
+    padding-right: 10px;
+  }
+}

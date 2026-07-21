@@ -1,0 +1,24 @@
+.tier {
+  margin-top: 56px;
+}
+.tierTitle {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--drift);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.tierTitle::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--cork);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}

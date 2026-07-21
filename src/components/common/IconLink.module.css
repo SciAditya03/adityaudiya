@@ -1,0 +1,24 @@
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--cork);
+  border-radius: 50%;
+  color: var(--drift);
+  font-size: 15px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+.iconLink:hover {
+  border-color: var(--ember);
+  color: var(--ember);
+  background: var(--ember-dim);
+  transform: translateY(-2px);
+}
+.small {
+  width: 26px;
+  height: 26px;
+  font-size: 12px;
+}

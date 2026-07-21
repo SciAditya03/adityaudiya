@@ -1,0 +1,237 @@
+.card {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  perspective: 1000px;
+  cursor: pointer;
+  border-radius: 12px;
+  background: transparent;
+}
+
+/* Card Inner - handles the 3D flip */
+.cardFront,
+.cardBack {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--cork);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Front Side */
+.cardFront {
+  background: linear-gradient(180deg, rgba(245, 240, 230, 0.95) 0%, rgba(235, 228, 215, 0.98) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+  transform: rotateY(0deg);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0s;
+}
+
+.cardContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.num {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ember);
+  margin-bottom: 4px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--walnut);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.description {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--drift);
+  margin: 0;
+}
+
+.meta {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--drift-dim);
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--cork);
+}
+
+.linkedinLink {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ember);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.linkedinLink:hover {
+  color: var(--ember-dim);
+}
+
+/* Back Side */
+.cardBack {
+  background: linear-gradient(180deg, rgba(245, 240, 230, 0.95) 0%, rgba(235, 228, 215, 0.98) 100%);
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+/* Optimized Image Container for Landscape Certificates */
+.imageContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  margin: 16px;
+  border-radius: 8px;
+  border: 2px solid var(--cork);
+  overflow: hidden;
+  position: relative;
+  min-height: 220px;
+}
+
+.certificateImage {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+/* Zoom effect on card hover */
+.card:hover .certificateImage {
+  transform: scale(1.02);
+}
+
+.noImage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--drift-dim);
+  font-style: italic;
+}
+
+/* Card Label/Badge */
+.cardLabel {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--walnut);
+  color: var(--cream);
+  padding: 8px 16px;
+  border-top-left-radius: 8px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover Flip Effect with Delay */
+.card:hover .cardFront {
+  transform: rotateY(-180deg);
+  transition-delay: 0s;
+}
+
+.card:hover .cardBack {
+  transform: rotateY(0deg);
+  transition-delay: 0s;
+}
+
+/* When not hovering, add delay before flipping back */
+.card:not(:hover) .cardFront {
+  transition-delay: 0.3s;
+}
+
+.card:not(:hover) .cardBack {
+  transition-delay: 0.1s;
+}
+
+/* Enhanced hover effects */
+.card:hover .cardFront,
+.card:hover .cardBack {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  border-color: var(--ember);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card {
+    height: 340px;
+  }
+  
+  .cardFront,
+  .cardBack {
+    padding: 22px;
+  }
+  
+  .title {
+    font-size: 18px;
+  }
+  
+  .description {
+    font-size: 12px;
+  }
+  
+  .imageContainer {
+    padding: 14px;
+    margin: 12px;
+    min-height: 180px;
+  }
+  
+  .certificateImage {
+    width: 100%;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .cardFront,
+  .cardBack {
+    transition: none;
+  }
+  
+  .card:hover .cardFront,
+  .card:hover .cardBack {
+    transform: none;
+  }
+  
+  .card:not(:hover) .cardFront,
+  .card:not(:hover) .cardBack {
+    transition-delay: 0s;
+  }
+}

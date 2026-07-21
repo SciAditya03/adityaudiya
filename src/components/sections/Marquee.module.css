@@ -1,0 +1,57 @@
+.row {
+  width: 120%;               /* overhang so tilted ends never show a gap */
+  margin-left: -10%;
+  overflow: hidden;
+  padding: 10px 0;
+  background: var(--hero-chip-bg);
+  border-top: 1px solid var(--hero-line);
+  border-bottom: 1px solid var(--hero-line);
+  /* Fade both edges so items dissolve rather than pop */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: max-content;
+  animation: scroll linear infinite;
+}
+.reverse { animation-direction: reverse; }
+
+/* -50% is exactly one copy of the duplicated list */
+@keyframes scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+.row:hover .track { animation-play-state: paused; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 18px;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hero-ink);
+}
+.chip i { font-size: 17px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .track { animation: none; }
+  .row {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .chip { font-size: 10.5px; padding: 7px 13px; }
+  .chip i { font-size: 14px; }
+}
