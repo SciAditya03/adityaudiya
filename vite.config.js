@@ -3,9 +3,10 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // IMPORTANT: Replace 'your-repo-name' with your actual GitHub repository name
-  // Example: if your repo is github.com/SciAditya03/portfolio, use '/portfolio/'
-  base: '/adityaudiya/',
+  // CRITICAL FIX for GitHub Pages:
+  // Use './' for relative paths. 
+  // If './' doesn't work, change it to your exact repo name: '/your-repo-name/'
+  base: './', 
   
   plugins: [react()],
   
