@@ -262,7 +262,7 @@ export const STARTUP_EXPERIENCE = [
 ];
 
 export const HACKATHON_PHOTOS = [1, 2, 3, 4].map((n) => ({
-  src: `/images/hackathons/${n}.jpg`,
+  src: asset(`images/hackathons/${n}.jpg`),
   alt: '',
   caption: `hackathons/${n}.jpg`,
 }));
