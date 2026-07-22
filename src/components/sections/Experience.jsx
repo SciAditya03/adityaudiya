@@ -3,13 +3,14 @@ import Reveal from '../common/Reveal';
 import TimelineItem from '../common/TimelineItem';
 import { EXPERIENCE } from '../../utils/constants';
 import text from '../../styles/sectionText.module.css';
+import styles from './Experience.module.css';
 
 // Fading layer colors - each experience gets progressively deeper
 const LAYER_COLORS = [
   '#F8F5EE', // Lightest - first experience
   '#EFE9DA', // Second layer
   '#E3D9C3', // Third layer
-  '	#D4C8AD', // Fourth layer (darkest of the fade)
+  '#D4C8AD', // Fourth layer (darkest of the fade)
 ];
 
 function Experience() {
@@ -24,7 +25,7 @@ function Experience() {
         sharpened a different edge of my craft.
       </Reveal>
 
-      <Reveal stagger>
+      <Reveal stagger className={styles.timelineContainer}>
         {EXPERIENCE.map((job, index) => (
           <TimelineItem
             key={job.id}
