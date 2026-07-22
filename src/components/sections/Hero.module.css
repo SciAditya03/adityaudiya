@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: flex-start;
   padding: 200px 24px 90px;
-  overflow: hidden;
+  overflow: hidden; /* Prevents horizontal scroll */
 }
 
 .hero::before {
@@ -20,7 +20,7 @@
 /* ============ MARQUEE BAND ============ */
 .marquee {
   position: relative;
-  width: 100vw;
+  width: 100%; /* Changed to 100% to prevent overflow */
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -34,7 +34,7 @@
 .row {
   overflow: hidden;
   height: 40px;
-  width: 100vw;
+  width: 100%; /* FIX: Changed from 100vw to 100% to prevent mobile scrollbar jank */
 }
 
 .track {
@@ -52,21 +52,21 @@
   animation-direction: reverse;
 }
 
-/* CRITICAL FIX: Each set spans full viewport width */
+/* CRITICAL FIX: Each set spans full container width using % instead of vw */
 .set {
   display: flex;
   gap: 14px;
   padding-right: 14px;
   flex-shrink: 0;
-  width: 100vw; /* Forces each set to be exactly viewport width */
+  width: 100%; /* FIX: Changed from 100vw */
   justify-content: space-around; /* Distributes tags evenly across the width */
   align-items: center;
 }
 
-/* Seamless loop: translate exactly one set width (100vw) */
+/* Seamless loop: translate exactly one set width (100%) */
 @keyframes marquee {
   from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-100vw, 0, 0); }
+  to   { transform: translate3d(-100%, 0, 0); } /* FIX: Changed from -100vw */
 }
 
 /* ============ FOREGROUND CONTENT ============ */
@@ -222,6 +222,8 @@
   background: rgba(16, 9, 4, 0.72);
   backdrop-filter: blur(6px);
   transition: all 0.3s ease;
+  /* Ensure it acts as a proper button on mobile */
+  -webkit-tap-highlight-color: transparent;
 }
 .social:hover {
   border-color: var(--ember);
@@ -266,7 +268,7 @@
   .content { margin-top: -76px; }
   
   .set {
-    width: 100vw;
+    width: 100%;
     justify-content: space-evenly;
   }
 }
@@ -284,10 +286,26 @@
   .statValue { font-size: 22px; }
   .actions { gap: 12px; }
   .cta { padding: 12px 22px; }
-  .socials { margin-left: 0; }
+  .socials { margin-left: 0; gap: 12px; }
+  
+  /* FIX: Expanded social icons to 48x48px touch target standard */
+  .social {
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
+  }
   
   .set {
     gap: 10px;
     padding-right: 10px;
+  }
+}
+
+/* Disable heavy hover effects on touch devices to prevent sticky hover states */
+@media (pointer: coarse) {
+  .social:hover,
+  .cta:hover,
+  .profilePhoto:hover {
+    transform: none;
   }
 }

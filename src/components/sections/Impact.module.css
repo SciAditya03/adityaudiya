@@ -104,8 +104,10 @@
     gap: 20px;
   }
   
+  /* FIX: Changed from fixed 380px to flexible auto-height to prevent text overflow */
   .card {
-    height: 380px;
+    height: auto;
+    min-height: 360px;
   }
   
   .cardContent {

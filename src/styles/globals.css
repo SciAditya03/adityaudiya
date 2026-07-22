@@ -52,5 +52,5 @@ section {
 }
 
 @media (max-width: 768px) {
-  section { padding: 80px 22px; }
+  section { padding: 48px 16px; }
 }

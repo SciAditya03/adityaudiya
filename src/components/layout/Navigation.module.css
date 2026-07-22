@@ -3,7 +3,8 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 22px 48px;
+  /* Added safe-area-inset-top to prevent notch overlap */
+  padding: calc(22px + env(safe-area-inset-top)) 48px 22px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,16 +12,19 @@
   background: linear-gradient(to bottom, rgba(16, 9, 4, 0.92), transparent);
   backdrop-filter: blur(8px);
 }
+
 .logo {
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
+
 .links {
   display: flex;
   gap: 30px;
 }
+
 .links a {
   font-size: 11px;
   font-weight: 500;
@@ -31,33 +35,46 @@
   color: var(--drift);
   transition: border-color 0.3s ease, color 0.3s ease;
 }
+
 .links a:hover,
 .links a.active {
   border-bottom-color: var(--ember);
   color: var(--cream);
 }
 
+/* Expanded to 48x48 touch target using padding to keep visual size identical */
 .menuBtn {
   display: none;
-  width: 26px;
-  height: 18px;
+  width: 48px;
+  height: 48px;
+  /* Padding centers the 26x18 visual icon inside the 48x48 box */
+  padding: 15px 11px; 
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box; /* Ensures padding is included in the 48x48 dimensions */
 }
+
 .menuBtn span {
   display: block;
-  width: 100%;
+  width: 100%; /* Fills the 26px content width (48 - 11*2) */
   height: 1px;
   background: var(--cream);
 }
 
 @media (max-width: 768px) {
   .nav {
-    padding: 18px 22px;
+    /* Adjusted for mobile padding + safe area */
+    padding: calc(18px + env(safe-area-inset-top)) 22px 18px;
   }
+  
   .links {
     display: none;
   }
+  
   .linksOpen {
     display: flex;
     flex-direction: column;
@@ -70,6 +87,7 @@
     background: var(--walnut);
     border-bottom: 1px solid var(--cork);
   }
+  
   .menuBtn {
     display: flex;
   }
@@ -79,6 +97,7 @@
 .nav:not(.scrolled) {
   background: linear-gradient(to bottom, rgba(245, 240, 232, 0.92), transparent);
 }
+
 .nav:not(.scrolled) .logo { color: #1a1a1a; }
 .nav:not(.scrolled) .links a { color: #4a4a4a; }
 .nav:not(.scrolled) .links a:hover,

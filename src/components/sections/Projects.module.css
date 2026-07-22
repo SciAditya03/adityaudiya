@@ -203,6 +203,11 @@
     padding: 22px 24px 16px;
   }
   
+  /* Force single column stack on mobile */
+  .cardBody {
+    grid-template-columns: 1fr;
+  }
+  
   .content {
     padding: 24px;
     gap: 18px;
@@ -226,8 +231,11 @@
     font-size: 11px;
   }
   
+  /* Bounded image height to prevent full-screen takeover */
   .imageWrapper {
-    min-height: 280px;
+    height: 260px; /* Perfectly centered in the 240px-300px range */
+    min-height: 240px;
+    max-height: 300px;
   }
   
   .cardLabel {

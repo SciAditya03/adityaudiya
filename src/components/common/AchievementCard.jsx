@@ -1,13 +1,23 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './AchievementCard.module.css';
 
 function AchievementCard({ num, title, description, meta, linkedin, image }) {
+  const [flipped, setFlipped] = useState(false);
+
   return (
     <div
-      className={styles.card}
+      className={`${styles.card} ${flipped ? styles.flipped : ''}`}
       role="button"
       tabIndex={0}
-      aria-label={`${title} - Hover to view certificate`}
+      onClick={() => setFlipped(!flipped)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setFlipped(!flipped);
+        }
+      }}
+      aria-label={`${title} - Click or hover to view certificate`}
     >
       {/* Front Side */}
       <div className={styles.cardFront}>
@@ -22,7 +32,7 @@ function AchievementCard({ num, title, description, meta, linkedin, image }) {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.linkedinLink}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => e.stopPropagation()} // Prevents card flip when clicking the link
             >
               View on LinkedIn →
             </a>

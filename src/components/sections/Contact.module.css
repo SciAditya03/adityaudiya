@@ -48,4 +48,17 @@
   .contact {
     padding: 80px 22px;
   }
+  
+  /* Increased spacing between social links on mobile */
+  .socials {
+    gap: 24px;
+  }
+  
+  /* FIX: Added padding to hit the 48x48px minimum touch target standard */
+  .socials a {
+    padding: 18px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
