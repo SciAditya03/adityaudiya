@@ -28,7 +28,6 @@ Tag.propTypes = {
   label: PropTypes.string.isRequired,
   target: PropTypes.string,
   muted: PropTypes.bool,
-  // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   tabIndex: PropTypes.number,
 };

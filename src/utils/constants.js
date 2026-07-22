@@ -4,6 +4,8 @@
 // in one place without touching JSX/markup.
 // ============================================================
 
+import { asset } from './helpers';
+
 export const SITE = {
   name: 'Aditya Udiya',
   title: 'Aditya Udiya - AI Engineer, Researcher, Founder',
@@ -73,7 +75,7 @@ export const HERO_MARQUEE_ROWS = [
 export const HERO_CONTENT = {
   topLabel: 'AI ENGINEER / RESEARCHER / FOUNDER',
   name: 'ADITYA UDIYA',
-  photo: { src: '/images/profile.jpg', alt: 'Aditya Udiya', caption: 'images/profile.jpg' },
+  photo: { src: asset('images/profile.jpg'), alt: 'Aditya Udiya', caption: 'images/profile.jpg' },
   tagline: {
     lead: 'Building production-grade AI systems, leading high-performance teams, solving real-world problems.',
   },
@@ -95,7 +97,7 @@ export const EDUCATION = {
   degree: 'B.Tech, Computer Science and Engineering',
   specialization: 'Specialization in Data Science',
   years: '2024 - 2028',
-  logo: { src: '/images/logos/vit.jpg', alt: 'VIT logo', caption: 'logos/vit.jpg' },
+  logo: { src: asset('images/logos/vit.jpg'), alt: 'VIT logo', caption: 'logos/vit.jpg' },
 };
 
 export const SKILL_GROUPS = [
@@ -154,7 +156,7 @@ export const PROJECTS = [
     title: 'Ground Control Software',
     repo: 'https://github.com/SciAditya03/ground-control-dashboard',
     techTags: ['React.js', 'Telemetry', 'GPS', '3D Mapping'],
-    image: { src: '/images/projects/gcs.png', alt: 'Ground Control Software', caption: 'projects/gcs.png' },
+    image: { src: asset('images/projects/gcs.png'), alt: 'Ground Control Software', caption: 'projects/gcs.png' },
     paragraphs: [
       'Real-time avionics mission control for SRAD rocket and UAV operations - live sensor dashboards, GPS integration, and 3D trajectory mapping.',
       'Delivered a production-ready system in 2 months against a 5-month timeline, 60% ahead of schedule, with a real-time telemetry pipeline for mission-critical data.',
@@ -171,7 +173,7 @@ export const PROJECTS = [
     title: 'AI Rockfall Prediction',
     repo: 'https://github.com/SciAditya03/Aroham-SIH',
     techTags: ['Python', 'Scikit-learn', 'Flask', 'IoT Edge'],
-    image: { src: '/images/projects/aroham.jpg', alt: 'Aroham Rockfall Prediction', caption: 'projects/aroham.jpg' },
+    image: { src: asset('images/projects/aroham.jpg'), alt: 'Aroham Rockfall Prediction', caption: 'projects/aroham.jpg' },
     paragraphs: [
       'Developed an early warning system for open pit mines using a custom built dataset, advanced feature engineering, and machine learning models achieving ~97% prediction accuracy.',
       'Cloud and edge deployable backend with real-time alerts and dashboards, shortlisted among 400+ teams in the Smart India Hackathon 2025 internal evaluation, under mentorship from Prof. Sunil Kumar (ISM Dhanbad).',
@@ -277,7 +279,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_avionics-uav-groundcontrolsoftware-activity-7435297837162315776-WK1_?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Secured dual awards for developing a React-based real-time Ground Control Software with live sensor dashboards and 3D trajectory mapping. Delivered a production-ready telemetry pipeline for SRAD rocket and UAV mission control under strict deadlines.',
         meta: 'SRAD Rocket / UAV Mission Control',
-        image: '/images/certs/cyber-deck-certificate.jpg',
+        image: asset('images/certs/cyber-deck-certificate.jpg'),
       },
       {
         num: '02',
@@ -285,7 +287,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_iitbhu-impactify-arvr-activity-7299281451928190977-23sl?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Advanced to national finals by presenting a scalable AR/VR-based medical training platform validated through extensive field research with practicing doctors. Developed a comprehensive product strategy and successfully pitched the solution to industry experts.',
         meta: 'Team FourSight',
-        image: '/images/certs/impactify-certificate.jpeg',
+        image: asset('images/certs/impactify-certificate.jpeg'),
       },
       {
         num: '03',
@@ -293,7 +295,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_eytechnathon-smartindiahackathon-agenticai-activity-7417521246680076288-3w_a?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Selected among the top 4,667 teams nationwide for developing "Manthana", an agentic AI predictive maintenance platform for commercial fleets. Leveraged Edge AI, LSTM networks, and Digital Twin tech to forecast equipment failures.',
         meta: 'Edge AI / LSTM / Digital Twin',
-        image: '/images/certs/ey-technathon-certificate.jpg',
+        image: asset('images/certs/ey-technathon-certificate.jpg'),
       },
       {
         num: '04',
@@ -301,7 +303,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_eytechnathon-smartindiahackathon-agenticai-activity-7417521246680076288-3w_a?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Shortlisted among 400+ internal teams for "Aroham", an advanced AI and IoT rockfall prediction system for open-pit mines. Achieved ~97% prediction accuracy using custom datasets and an edge-deployable ML backend.',
         meta: 'Team Aroham',
-        image: '/images/certs/sih-certificate.jpg',
+        image: asset('images/certs/sih-certificate.jpg'),
       },
       {
         num: '05',
@@ -309,7 +311,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_healthhackathon-vitbhopal-jhu-activity-7299319541581406208-6snp?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Advanced to Round 2 among 500+ teams by developing "CuraSix", an AI-driven preventive healthcare platform addressing youth mental health and ICU allergies. Validated the solution\'s clinical applicability through field research at Narayani Hospital.',
         meta: 'AI Preventive Healthcare',
-        image: '/images/certs/curasix-certificate.jpeg',
+        image: asset('images/certs/curasix-certificate.jpeg'),
       },
     ],
   },
@@ -322,7 +324,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_yantrahack-vitvellore-aiforsustainability-activity-7299315412368826369-mu_I?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Achieved Top 6 and Best Fresher Team Award for "Astra", an AI-enhanced sustainable mechanical system optimizing energy efficiency. Integrated ESP32 microcontrollers with custom ML models to automate mechanical processes in real-time.',
         meta: 'ESP32 / ML / Sustainability',
-        image: '/images/certs/yantra-hack-certificate.jpg',
+        image: asset('images/certs/yantra-hack-certificate.jpg'),
       },
       {
         num: '07',
@@ -330,7 +332,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_innovation-competition-leadership-activity-7299136897375703040-w7R4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Secured 3rd place among 120+ teams by conceptualizing and building a comprehensive, SDG-aligned solution for sustainable development. Delivered a viable product strategy addressing critical community challenges through rigorous user research.',
         meta: 'Product Management Competition',
-        image: '/images/certs/yuvamanthan-certificate.jpeg',
+        image: asset('images/certs/yuvamanthan-certificate.jpeg'),
       },
       {
         num: '08',
@@ -338,7 +340,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_ideathon-teamwork-sdg2-activity-7279024359267061760-gsxv?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Awarded 2nd Runner Up for developing innovative mobility and sustainability solutions to address urban transportation bottlenecks. Designed a scalable, user-centric platform optimizing route planning and promoting eco-friendly transit options.',
         meta: 'Product Management Competition',
-        image: '/images/certs/ideathon-certificate.jpeg',
+        image: asset('images/certs/ideathon-certificate.jpeg'),
       },
       {
         num: '09',
@@ -346,7 +348,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_womenstechies-gdscvit-geminiai-activity-7318659039494610944-zdok?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Advanced to the final round by building the "VIT Query Chatbot" and an AI-powered exam preparation assistant. Leveraged NLP to provide instant, accurate responses to campus queries and personalized study recommendations.',
         meta: 'Buildathon',
-        image: '/images/certs/womens-techies-certificate.jpg',
+        image: asset('images/certs/womens-techies-certificate.jpg'),
       },
       {
         num: '10',
@@ -354,7 +356,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_electrohack-vitvellore-ieee-activity-7299300950136033282-GaIX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Honored with the Best Fresher Award for developing a real-time health monitoring wearable band. Integrated advanced biosensors with a microcontroller to continuously track vital signs and transmit data to a mobile app.',
         meta: 'Wearable Health Tech',
-        image: '/images/certs/electrohack-certificate.jpeg',
+        image: asset('images/certs/electrohack-certificate.jpeg'),
       },
       {
         num: '11',
@@ -362,7 +364,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_ai-surveillancetech-hacktodetect-activity-7299330638023680001-wy5y?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Received direct recognition from the KALKINI co-founder for architecting an AI-based surveillance system solution. Utilized computer vision and ML algorithms to detect anomalies and security threats in real-time video feeds.',
         meta: 'AI Surveillance',
-        image: '/images/certs/hack2detect-certificate.jpeg',
+        image: asset('images/certs/hack2detect-certificate.jpeg'),
       },
       {
         num: '12',
@@ -370,7 +372,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_devjam-innovation-teamwork-activity-7279030276062597121-ohbf?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Reached the 3rd evaluation round by developing a community-driven neighborhood logistics platform. Optimized last-mile delivery and resource sharing within local communities using a decentralized matching algorithm.',
         meta: 'Community Logistics',
-        image: '/images/certs/devjams-certificate.jpeg',
+        image: asset('images/certs/devjams-certificate.jpeg'),
       },
       {
         num: '13',
@@ -378,7 +380,7 @@ export const HACKATHON_TIERS = [
         linkedin: `${LI}adityaudiya337315_iitguwahati-encode2025-aiforsales-activity-7299293303110275072-MU4G?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5cyeQBiS7uwqS782p66wdneoNgecLYgTY`,
         description: 'Participated in rigorous product management and case competitions focusing on comprehensive market analysis and user research. Designed end-to-end solutions for complex business cases, strengthening data-driven decision-making skills.',
         meta: 'Product Management Competition',
-        image: '/images/certs/iit-guwahati-certificate.jpg',
+        image: asset('images/certs/iit-guwahati-certificate.jpg'),
       },
     ],
   },
@@ -389,7 +391,7 @@ export const CERTIFICATIONS = [
     id: 'iitm-ai-python',
     title: 'Artificial Intelligence with Python',
     issuer: 'E-Cell, IIT Madras',
-    logo: '/images/logos/iitm.png',
+    logo: asset('images/logos/iitm.png'),
   },
 ];
 
@@ -402,10 +404,10 @@ export const RESEARCH_QUOTE = {
 };
 
 export const IMPACT_PHOTOS = [
-  { src: '/images/impact/1.jpg', alt: 'GovernAI Training', caption: 'impact/1.jpg' },
-  { src: '/images/impact/2.jpg', alt: 'CuraSix Research', caption: 'impact/2.jpg' },
-  { src: '/images/impact/3.jpg', alt: 'FourSight Research', caption: 'impact/3.jpg' },
-  { src: '/images/impact/4.jpg', alt: 'Startup Workshop', caption: 'impact/4.jpg' },
+  { src: asset('images/impact/1.jpg'), alt: 'GovernAI Training', caption: 'impact/1.jpg' },
+  { src: asset('images/impact/2.jpg'), alt: 'CuraSix Research', caption: 'impact/2.jpg' },
+  { src: asset('images/impact/3.jpg'), alt: 'FourSight Research', caption: 'impact/3.jpg' },
+  { src: asset('images/impact/4.jpg'), alt: 'Startup Workshop', caption: 'impact/4.jpg' },
 ];
 
 export const IMPACT_CARDS = [

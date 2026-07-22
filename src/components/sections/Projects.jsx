@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import SectionLabel from '../common/SectionLabel';
 import Reveal from '../common/Reveal';

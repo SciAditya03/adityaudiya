@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import styles from './TimelineItem.module.css';
 
-function TimelineItem({ date, location, company, role, bullets, layerColor, layerIndex }) {
+function TimelineItem({ date, location, company, role, bullets = [], layerColor, layerIndex }) {
   return (
     <div
       className={styles.item}
@@ -35,5 +36,15 @@ function TimelineItem({ date, location, company, role, bullets, layerColor, laye
     </div>
   );
 }
+
+TimelineItem.propTypes = {
+  date: PropTypes.string,
+  location: PropTypes.string,
+  company: PropTypes.string.isRequired,
+  role: PropTypes.string,
+  bullets: PropTypes.arrayOf(PropTypes.node),
+  layerColor: PropTypes.string,
+  layerIndex: PropTypes.number,
+};
 
 export default TimelineItem;

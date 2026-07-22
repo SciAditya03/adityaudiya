@@ -2,10 +2,13 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  // For GitHub Pages: use '/your-repo-name/'
-  // For Vercel: use './' or remove this line entirely
-  base: './',
-  
+  // Deployed to GitHub Pages as a project site, so everything is served from
+  // https://sciaditya03.github.io/adityaudiya/ rather than the domain root.
+  // This must match the repo name. Public/ paths held as strings in
+  // constants.js go through the asset() helper to pick up the same base.
+  base: '/adityaudiya/',
+
+
   plugins: [react()],
   
   build: {

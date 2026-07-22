@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styles from './AchievementCard.module.css';
 
 function AchievementCard({ num, title, description, meta, linkedin, image }) {
@@ -54,5 +55,14 @@ function AchievementCard({ num, title, description, meta, linkedin, image }) {
     </div>
   );
 }
+
+AchievementCard.propTypes = {
+  num: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  meta: PropTypes.node,
+  linkedin: PropTypes.string,
+  image: PropTypes.string,
+};
 
 export default AchievementCard;

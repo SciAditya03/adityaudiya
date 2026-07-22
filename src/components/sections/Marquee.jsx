@@ -18,7 +18,6 @@ function Marquee({ items, direction = 'left', duration = 45, tilt = 0 }) {
         style={{ animationDuration: `${duration}s` }}
       >
         {sequence.map((item, i) => (
-          // eslint-disable-next-line react/no-array-index-key
           <span className={styles.chip} key={`${item.name}-${i}`}>
             <i className={item.icon} aria-hidden="true" />
             {item.name}

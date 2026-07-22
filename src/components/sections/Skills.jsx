@@ -1,96 +1,113 @@
-import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import SectionLabel from '../common/SectionLabel';
 import Reveal from '../common/Reveal';
 import { SKILL_GROUPS } from '../../utils/constants';
 import text from '../../styles/sectionText.module.css';
 import styles from './Skills.module.css';
+
+// Icons are imported by name so the bundler tree-shakes them. Importing the
+// `react-icons/fa` or `react-icons/si` barrel instead pulls in every icon in
+// the set (~6 MB of JS), so keep these as individual named imports.
+import {
+  FaAtom,
+  FaBalanceScale,
+  FaBrain,
+  FaChartArea,
+  FaCheckCircle,
+  FaCode,
+  FaComments,
+  FaCss3Alt,
+  FaDatabase,
+  FaDocker,
+  FaDribbble,
+  FaEye,
+  FaFigma,
+  FaFire,
+  FaFlask,
+  FaGitAlt,
+  FaGithub,
+  FaHtml5,
+  FaJava,
+  FaJs,
+  FaLink,
+  FaNetworkWired,
+  FaNodeJs,
+  FaPlayCircle,
+  FaProjectDiagram,
+  FaPython,
+  FaReact,
+  FaRedo,
+  FaRobot,
+  FaSearch,
+  FaSquareRootAlt,
+  FaTerminal,
+} from 'react-icons/fa';
 import { SiC, SiCplusplus } from 'react-icons/si';
+
+const FALLBACK_ICON = { icon: FaCode, color: '#666' };
 
 // Icon mapping for skills using react-icons
 const ICON_MAP = {
   // Languages
-  'Python': { lib: 'FaPython', color: '#3776AB' },
-  'JavaScript': { lib: 'FaJs', color: '#F7DF1E' },
-  'Java': { lib: 'FaJava', color: '#007396' },
-  'C': { lib: 'SiC', color: '#00599C', fromSI: true },
-  'TypeScript': { lib: 'FaJs', color: '#3178C6' },
-  'C++': { lib: 'SiCplusplus', color: '#00599C', fromSI: true },
-  
+  'Python': { icon: FaPython, color: '#3776AB' },
+  'JavaScript': { icon: FaJs, color: '#F7DF1E' },
+  'Java': { icon: FaJava, color: '#007396' },
+  'C': { icon: SiC, color: '#00599C' },
+  'TypeScript': { icon: FaJs, color: '#3178C6' },
+  'C++': { icon: SiCplusplus, color: '#00599C' },
+
   // AI/ML
-  'Machine Learning': { lib: 'FaBrain', color: '#FF6B6B' },
-  'Deep Learning': { lib: 'FaNetworkWired', color: '#4ECDC4' },
-  'Generative AI': { lib: 'FaRobot', color: '#95E1D3' },
-  'LLMs': { lib: 'FaDatabase', color: '#F38181' },
-  'RAG': { lib: 'FaSearch', color: '#AA96DA' },
-  'Prompt Engineering': { lib: 'FaTerminal', color: '#FCBAD3' },
-  'AI Agents': { lib: 'FaRobot', color: '#A8D8EA' },
-  'NLP': { lib: 'FaComments', color: '#FFD93D' },
-  'Transformer Architectures': { lib: 'FaProjectDiagram', color: '#6BCB77' },
-  'Model Alignment': { lib: 'FaBalanceScale', color: '#FF6B9D' },
-  'Continual Learning': { lib: 'FaRedo', color: '#C7CEEA' },
-  'Molecular AI': { lib: 'FaAtom', color: '#FFB6B9' },
-  
+  'Machine Learning': { icon: FaBrain, color: '#FF6B6B' },
+  'Deep Learning': { icon: FaNetworkWired, color: '#4ECDC4' },
+  'Generative AI': { icon: FaRobot, color: '#95E1D3' },
+  'LLMs': { icon: FaDatabase, color: '#F38181' },
+  'RAG': { icon: FaSearch, color: '#AA96DA' },
+  'Prompt Engineering': { icon: FaTerminal, color: '#FCBAD3' },
+  'AI Agents': { icon: FaRobot, color: '#A8D8EA' },
+  'NLP': { icon: FaComments, color: '#FFD93D' },
+  'Transformer Architectures': { icon: FaProjectDiagram, color: '#6BCB77' },
+  'Model Alignment': { icon: FaBalanceScale, color: '#FF6B9D' },
+  'Continual Learning': { icon: FaRedo, color: '#C7CEEA' },
+  'Molecular AI': { icon: FaAtom, color: '#FFB6B9' },
+
   // Frameworks & Tools
-  'PyTorch': { lib: 'FaFire', color: '#EE4C2C' },
-  'React.js': { lib: 'FaReact', color: '#61DAFB' },
-  'Docker': { lib: 'FaDocker', color: '#2496ED' },
-  'Git': { lib: 'FaGitAlt', color: '#F05032' },
-  'MATLAB': { lib: 'FaSquareRootAlt', color: '#0076A8' },
-  'Flask': { lib: 'FaFlask', color: '#000000' },
-  'ChemBERTa': { lib: 'FaFlask', color: '#FF6B6B' },
-  'RDKit': { lib: 'FaFlask', color: '#393E46' },
-  'Simulink': { lib: 'FaLink', color: '#0076A8' },
-  'Altair': { lib: 'FaChartArea', color: '#1F77B4' },
-  'Playwright': { lib: 'FaPlayCircle', color: '#2EAD33' },
-  'N8N': { lib: 'FaNetworkWired', color: '#EA4B71' },
-  'Automation Testing': { lib: 'FaCheckCircle', color: '#4CAF50' },
-  'HTML': { lib: 'FaHtml5', color: '#E34F26' },
-  'CSS': { lib: 'FaCss3Alt', color: '#1572B6' },
-  'Node.js': { lib: 'FaNodeJs', color: '#339933' },
-  'GitHub': { lib: 'FaGithub', color: '#181717' },
-  'Supabase': { lib: 'FaDatabase', color: '#3ECF8E' },
-  'Figma': { lib: 'FaFigma', color: '#F24E1E' },
-  'Framer': { lib: 'FaFigma', color: '#0055FF' },
-  'Dribbble': { lib: 'FaDribbble', color: '#EA4C89' },
-  'Sentry': { lib: 'FaEye', color: '#362D59' },
+  'PyTorch': { icon: FaFire, color: '#EE4C2C' },
+  'React.js': { icon: FaReact, color: '#61DAFB' },
+  'Docker': { icon: FaDocker, color: '#2496ED' },
+  'Git': { icon: FaGitAlt, color: '#F05032' },
+  'MATLAB': { icon: FaSquareRootAlt, color: '#0076A8' },
+  'Flask': { icon: FaFlask, color: '#000000' },
+  'ChemBERTa': { icon: FaFlask, color: '#FF6B6B' },
+  'RDKit': { icon: FaFlask, color: '#393E46' },
+  'Simulink': { icon: FaLink, color: '#0076A8' },
+  'Altair': { icon: FaChartArea, color: '#1F77B4' },
+  'Playwright': { icon: FaPlayCircle, color: '#2EAD33' },
+  'N8N': { icon: FaNetworkWired, color: '#EA4B71' },
+  'Automation Testing': { icon: FaCheckCircle, color: '#4CAF50' },
+  'HTML': { icon: FaHtml5, color: '#E34F26' },
+  'CSS': { icon: FaCss3Alt, color: '#1572B6' },
+  'Node.js': { icon: FaNodeJs, color: '#339933' },
+  'GitHub': { icon: FaGithub, color: '#181717' },
+  'Supabase': { icon: FaDatabase, color: '#3ECF8E' },
+  'Figma': { icon: FaFigma, color: '#F24E1E' },
+  'Framer': { icon: FaFigma, color: '#0055FF' },
+  'Dribbble': { icon: FaDribbble, color: '#EA4C89' },
+  'Sentry': { icon: FaEye, color: '#362D59' },
 };
 
-// Dynamic icon renderer
 function SkillIcon({ skillName }) {
-  const [IconComponent, setIconComponent] = useState(null);
-  const iconConfig = ICON_MAP[skillName] || { lib: 'FaCode', color: '#666' };
-
-  useEffect(() => {
-    const loadIcon = async () => {
-      try {
-        let Icon;
-        if (iconConfig.fromSI) {
-          // Load from Simple Icons
-          const { [iconConfig.lib]: LoadedIcon } = await import('react-icons/si');
-          Icon = LoadedIcon;
-        } else {
-          // Load from Font Awesome
-          const { [iconConfig.lib]: LoadedIcon } = await import('react-icons/fa');
-          Icon = LoadedIcon;
-        }
-        setIconComponent(() => Icon);
-      } catch (error) {
-        console.error(`Failed to load icon ${iconConfig.lib}:`, error);
-      }
-    };
-    loadIcon();
-  }, [iconConfig.lib, iconConfig.fromSI]);
-
-  if (!IconComponent) {
-    return <span className={styles.iconPlaceholder} />;
-  }
+  const { icon: IconComponent, color } = ICON_MAP[skillName] || FALLBACK_ICON;
 
   return (
-    <span className={styles.icon} style={{ color: iconConfig.color }}>
+    <span className={styles.icon} style={{ color }}>
       <IconComponent />
     </span>
   );
 }
+
+SkillIcon.propTypes = {
+  skillName: PropTypes.string.isRequired,
+};
 
 function SkillStrip({ group, config }) {
   // Duplicate items to create a mathematically seamless infinite loop
@@ -115,6 +132,18 @@ function SkillStrip({ group, config }) {
     </div>
   );
 }
+
+SkillStrip.propTypes = {
+  group: PropTypes.shape({
+    title: PropTypes.string,
+    skills: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
+  }).isRequired,
+  config: PropTypes.shape({
+    duration: PropTypes.number,
+    direction: PropTypes.string,
+    rotate: PropTypes.number,
+  }).isRequired,
+};
 
 function Skills() {
   return (
