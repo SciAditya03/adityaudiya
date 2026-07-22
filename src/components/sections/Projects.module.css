@@ -43,15 +43,15 @@
 /* Body: Content + Image */
 .cardBody {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr 1.5fr;
   gap: 0;
 }
 
 .content {
-  padding: 36px 40px;
+  padding: 36px 36px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .title {
