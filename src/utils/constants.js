@@ -173,7 +173,7 @@ export const PROJECTS = [
     title: 'AI Rockfall Prediction',
     repo: 'https://github.com/SciAditya03/Aroham-SIH',
     techTags: ['Python', 'Scikit-learn', 'Flask', 'IoT Edge'],
-    image: { src: asset('images/projects/aroham.jpg'), alt: 'Aroham Rockfall Prediction', caption: 'projects/aroham.jpg' },
+    image: { src: asset('images/projects/aroham.png'), alt: 'Aroham Rockfall Prediction', caption: 'projects/aroham.png' },
     paragraphs: [
       'Developed an early warning system for open pit mines using a custom built dataset, advanced feature engineering, and machine learning models achieving ~97% prediction accuracy.',
       'Cloud and edge deployable backend with real-time alerts and dashboards, shortlisted among 400+ teams in the Smart India Hackathon 2025 internal evaluation, under mentorship from Prof. Sunil Kumar (ISM Dhanbad).',
