@@ -65,7 +65,7 @@ MarqueeRow.propTypes = {
 };
 
 const Hero = memo(function Hero() {
-  const { name, topLabel, photo, tagline, stats, ctas, scrollHint } = HERO_CONTENT;
+  const { name, topLabel, photo, tagline, stats, ctas } = HERO_CONTENT;
 
   // Memoize the scroll handler to prevent unnecessary re-renders of child components
   const handleCtaClick = useCallback((target) => {
