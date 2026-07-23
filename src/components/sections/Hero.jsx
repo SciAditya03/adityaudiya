@@ -123,7 +123,7 @@ function Hero() {
           </div>
         </div>
       </div>
-
+    </br>
       <div className={styles.scrollHint}>{scrollHint}</div>
     </section>
   );
