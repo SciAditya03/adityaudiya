@@ -4,7 +4,7 @@ import Tag from '../common/Tag';
 import MediaFrame from '../common/MediaFrame';
 import { HERO_TAG_ROWS, HERO_MARQUEE_ROWS, HERO_CONTENT, SITE } from '../../utils/constants';
 import { scrollToTarget } from '../../utils/helpers';
-
+import styles from './Hero.module.css';
 
 /**
  * One infinitely-scrolling row of identity tags.
