@@ -1,3 +1,11 @@
+/* Container holds both the flip card and the footer */
+.cardContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .card {
   position: relative;
   width: 100%;
@@ -8,6 +16,8 @@
   cursor: pointer;
   border-radius: 12px;
   background: transparent;
+  /* Add margin bottom to make room for footer */
+  margin-bottom: 12px;
 }
 
 /* Card Inner - handles the 3D flip */
@@ -73,27 +83,6 @@
   margin-top: auto;
   padding-top: 16px;
   border-top: 1px solid var(--cork);
-}
-
-.linkedinLink {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ember);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: color 0.2s ease;
-  /* Ensure link is always clickable over the card */
-  pointer-events: auto !important;
-  z-index: 10;
-  position: relative;
-}
-
-.linkedinLink:hover {
-  color: var(--ember-dim);
 }
 
 /* Back Side */
@@ -214,10 +203,66 @@
   transform: scale(1.02);
 }
 
-/* Responsive */
+/* =========================================
+   NEW: Footer Styles
+   ========================================= */
+.cardFooter {
+  width: 100%;
+  height: 48px;
+  background: linear-gradient(180deg, rgba(245, 240, 230, 0.6) 0%, rgba(235, 228, 215, 0.8) 100%);
+  border: 1px solid var(--cork);
+  border-top: none; /* Merge visually with card border */
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  z-index: 10;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cardFooter:hover {
+  background: linear-gradient(180deg, rgba(245, 240, 230, 0.9) 0%, rgba(235, 228, 215, 1) 100%);
+  border-color: var(--ember);
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ember);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.footerLink:hover {
+  color: var(--walnut);
+  background: var(--ember);
+  gap: 10px; /* Slight animation */
+}
+
+.footerLink i {
+  font-size: 14px;
+}
+
+/* Prevent footer from affecting card flip */
+.cardContainer:hover .cardFooter {
+  /* No flip transformation applied to footer */
+}
+
+/* =========================================
+   Responsive Adjustments
+   ========================================= */
 @media (max-width: 768px) {
   .card {
-    /* Fluid height for mobile to prevent text truncation */
     min-height: 340px;
     height: auto;
   }
@@ -244,9 +289,25 @@
   .certificateImage {
     width: 100%;
   }
+
+  .cardFooter {
+    height: 44px;
+    padding: 0 12px;
+  }
+  
+  .footerLink {
+    font-size: 10px;
+    gap: 6px;
+  }
+  
+  .footerLink i {
+    font-size: 12px;
+  }
 }
 
-/* Reduced Motion */
+/* =========================================
+   Reduced Motion
+   ========================================= */
 @media (prefers-reduced-motion: reduce) {
   .cardFront,
   .cardBack {

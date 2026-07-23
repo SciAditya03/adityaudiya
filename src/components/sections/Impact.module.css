@@ -11,7 +11,7 @@
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--cork);
-  background: linear-gradient(180deg, rgba(220, 240, 220, 0.95) 0%, rgba(210, 235, 210, 0.95) 100%);
+  background: linear-gradient(180deg, rgba(255, 249, 239, 0.95) 0%, rgba(23, 28, 40, 0.95) 100%);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
@@ -20,7 +20,7 @@
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(76, 175, 80, 0.3);
-  border-color: #4CAF50;
+  border-color: #161757;
 }
 
 .cardContent {
@@ -31,71 +31,83 @@
   justify-content: flex-start;
 }
 
-.num {
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: #2E7D32;
-  margin-bottom: 4px;
+/* --- TOP SECTION ELEMENTS (Over Light Cream) --- */
+
+.num { 
+  font-size: 13px; 
+  font-weight: 700; 
+  text-transform: uppercase; 
+  letter-spacing: 0.18em; 
+  color: rgba(15, 18, 26, 0.4); /* Muted Midnight Charcoal — subtle but visible premium accent */
+  margin-bottom: 4px; 
 }
 
-.label {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #388E3C;
-  margin-bottom: 14px;
-  font-weight: 600;
+.label { 
+  font-size: 10px; 
+  text-transform: uppercase; 
+  letter-spacing: 0.2em; 
+  color: #5A6573; /* Slate Blue-Grey — separates the tag cleanly from the title */
+  margin-bottom: 14px; 
+  font-weight: 600; 
 }
 
-.title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1B5E20;
-  line-height: 1.3;
-  margin: 0 0 12px 0;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
+.title { 
+  font-size: 20px; 
+  font-weight: 700; 
+  color: #0F121A; /* Midnight Charcoal — sharp executive look, maximum readability */
+  line-height: 1.3; 
+  margin: 0 0 12px 0; 
+  text-transform: uppercase; 
+  letter-spacing: -0.01em; 
 }
 
-.description {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #33691E;
-  margin: 0 0 16px 0;
+
+/* --- MIDDLE SECTION ELEMENTS (Over Dark Transition) --- */
+
+.description { 
+  font-size: 14px; 
+  line-height: 1.6; 
+  color: #E0E4E8; /* Brushed Platinum — glows softly over the darkening gradient */
+  margin: 0 0 16px 0; 
 }
 
-.outcome {
-  margin-top: auto;
-  padding-top: 16px;
-  border-top: 1px solid rgba(76, 175, 80, 0.3);
-  font-size: 13px;
-  color: #558B2F;
-  line-height: 1.5;
+
+/* --- BOTTOM SECTION ELEMENTS (Over Deep Midnight) --- */
+
+.outcome { 
+  margin-top: auto; 
+  padding-top: 16px; 
+  border-top: 1px solid rgba(253, 245, 230, 0.15); /* Replaced green with faint Warm Cream border line */
+  font-size: 13px; 
+  color: #FDF5E6; /* Warm Champagne Gold — draws final focus to your high-value impact statement */
+  line-height: 1.5; 
 }
 
-.outcome strong {
-  color: #2E7D32;
-  font-weight: 600;
-  display: block;
-  margin-bottom: 4px;
+.outcome strong { 
+  color: #FDF5E6; /* Match the Champagne Gold — clean and uniform without harsh green contrast */
+  font-weight: 600; 
+  display: block; 
+  margin-bottom: 4px; 
 }
 
-.cardLabel {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: #2E7D32;
-  color: #E8F5E9;
-  padding: 10px 18px;
-  border-top-left-radius: 8px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  transition: opacity 0.3s ease;
+.cardLabel { 
+  position: absolute; 
+  bottom: 0; 
+  right: 0; 
+  background: rgba(253, 245, 230, 0.08); /* Frosted Platinum glass effect instead of heavy green */
+  color: #FDF5E6; /* Warm Champagne Gold text */
+  border-top: 1px solid rgba(253, 245, 230, 0.2); /* Laser-etched metallic rim */
+  border-left: 1px solid rgba(253, 245, 230, 0.2);
+  padding: 10px 18px; 
+  border-top-left-radius: 8px; 
+  font-size: 10px; 
+  font-weight: 700; 
+  letter-spacing: 0.15em; 
+  text-transform: uppercase; 
+  backdrop-filter: blur(10px); /* Gives that real luxury card micro-texture feel */
+  transition: opacity 0.3s ease; 
 }
+
 
 /* Responsive */
 @media (max-width: 768px) {

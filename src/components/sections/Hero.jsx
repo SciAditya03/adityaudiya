@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Tag from '../common/Tag';
 import MediaFrame from '../common/MediaFrame';
@@ -19,9 +19,9 @@ import styles from './Hero.module.css';
  */
 const MarqueeRow = memo(function MarqueeRow({ tags, direction, duration }) {
   const renderSet = (isClone) =>
-    tags.map((tag) => (
+    tags.map((tag, index) => (
       <Tag
-        key={`${isClone ? 'clone' : 'orig'}-${tag.label}`}
+        key={`${isClone ? 'clone' : 'orig'}-${tag.label}-${index}`}
         label={tag.label}
         target={tag.target}
         muted={tag.muted}
@@ -29,10 +29,18 @@ const MarqueeRow = memo(function MarqueeRow({ tags, direction, duration }) {
       />
     ));
 
+  // Safely combine class names to avoid rendering "undefined" strings
+  const trackClassName = [
+    styles.track,
+    direction === 'right' && styles.reverse,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <div className={styles.row}>
       <div
-        className={`${styles.track} ${direction === 'right' ? styles.reverse : ''}`}
+        className={trackClassName}
         style={{ animationDuration: `${duration}s` }}
       >
         <div className={styles.set}>{renderSet(false)}</div>
@@ -56,8 +64,15 @@ MarqueeRow.propTypes = {
   duration: PropTypes.number.isRequired,
 };
 
-function Hero() {
+const Hero = memo(function Hero() {
   const { name, topLabel, photo, tagline, stats, ctas, scrollHint } = HERO_CONTENT;
+
+  // Memoize the scroll handler to prevent unnecessary re-renders of child components
+  const handleCtaClick = useCallback((target) => {
+    if (target) {
+      scrollToTarget(target);
+    }
+  }, []);
 
   return (
     <section className={styles.hero} id="top">
@@ -67,10 +82,12 @@ function Hero() {
       {/* Marquee sits behind the content as an ambient layer */}
       <div className={styles.marquee} aria-hidden="true">
         {HERO_TAG_ROWS.map((tags, i) => {
-          const motion = HERO_MARQUEE_ROWS[i] ?? HERO_MARQUEE_ROWS[0];
+          // Provide a safe fallback to prevent crashes if HERO_MARQUEE_ROWS is short
+          const motion = HERO_MARQUEE_ROWS[i] ?? HERO_MARQUEE_ROWS[0] ?? { direction: 'left', duration: 40 };
+          
           return (
             <MarqueeRow
-              key={motion.direction + motion.duration + i}
+              key={`row-${i}-${motion.direction}`}
               tags={tags}
               direction={motion.direction}
               duration={motion.duration}
@@ -92,8 +109,8 @@ function Hero() {
         <p className={styles.tagline}>{tagline.lead}</p>
 
         <div className={styles.stats}>
-          {stats.map((stat) => (
-            <div className={styles.stat} key={stat.label}>
+          {stats.map((stat, index) => (
+            <div className={styles.stat} key={`stat-${stat.label}-${index}`}>
               <span className={styles.statValue}>{stat.value}</span>
               <span className={styles.statLabel}>{stat.label}</span>
             </div>
@@ -105,28 +122,43 @@ function Hero() {
             <button
               type="button"
               key={cta.label}
-              className={`${styles.cta} ${cta.primary ? styles.ctaPrimary : ''}`}
+              className={`${styles.cta} ${cta.primary ? styles.ctaPrimary : ''}`.trim()}
               data-cursor="VIEW"
-              onClick={() => scrollToTarget(cta.target)}
+              onClick={() => handleCtaClick(cta.target)}
             >
               {cta.label}
             </button>
           ))}
 
           <div className={styles.socials}>
-            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" data-cursor="VIEW" aria-label="LinkedIn profile" className={styles.social}>
+            <a
+              href={SITE.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="VIEW"
+              aria-label="LinkedIn profile"
+              className={styles.social}
+            >
               <i className="fa-brands fa-linkedin-in" aria-hidden="true" />
             </a>
-            <a href={SITE.github} target="_blank" rel="noopener noreferrer" data-cursor="VIEW" aria-label="GitHub profile" className={styles.social}>
+            <a
+              href={SITE.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="VIEW"
+              aria-label="GitHub profile"
+              className={styles.social}
+            >
               <i className="fa-brands fa-github" aria-hidden="true" />
             </a>
           </div>
         </div>
       </div>
 
-      <div className={styles.scrollHint}>{scrollHint}</div>
+      {/* Scroll hint is purely decorative/visual, hide from screen readers */}
+      
     </section>
   );
-}
+});
 
 export default Hero;

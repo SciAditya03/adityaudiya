@@ -6,7 +6,31 @@
   align-items: center;
   justify-content: flex-start;
   padding: 200px 24px 90px;
-  overflow: hidden; /* Prevents horizontal scroll */
+  overflow: visible; /* Prevents horizontal scroll */
+}
+.marqueeWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px; /* Prevents it from extending too wide */
+  margin: 0 auto 40px; /* Adds spacing below marquee */
+  overflow: hidden; /* Contains the rotated elements */
+  z-index: 1; /* Keeps it behind content */
+}
+
+.marquee {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transform: rotate(-2.5deg);
+  pointer-events: none;
+  contain: layout style paint;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  /* Add padding to prevent edge clipping when rotated */
+  padding: 20px 0;
+  margin: -20px 0; /* Compensate for padding */
 }
 
 .hero::before {
@@ -79,6 +103,7 @@
   text-align: center;
   max-width: 720px;
   margin-top: -200px;
+  background: transparent;
 }
 
 .topLabel {
