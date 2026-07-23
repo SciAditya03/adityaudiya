@@ -253,10 +253,6 @@
   font-size: 14px;
 }
 
-/* Prevent footer from affecting card flip */
-.cardContainer:hover .cardFooter {
-  /* No flip transformation applied to footer */
-}
 
 /* =========================================
    Responsive Adjustments

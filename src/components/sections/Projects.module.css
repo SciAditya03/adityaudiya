@@ -128,18 +128,22 @@
   font-weight: 700;
 }
 
-/* Image */
+/* Image - UPDATED TO SHOW FULL IMAGE */
 .imageWrapper {
   position: relative;
   overflow: hidden;
   border-left: 1px solid rgba(139, 115, 85, 0.15);
-  min-height: 480px;
+  /* Remove fixed min-height, use aspect ratio instead */
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #000; /* Black background for wide screenshots */
 }
 
 .imageWrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* Changed from 'cover' to 'contain' to show entire image */
+  object-fit: contain;
   display: block;
   transition: transform 0.4s ease;
 }
@@ -177,7 +181,8 @@
   .imageWrapper {
     border-left: none;
     border-top: 1px solid rgba(139, 115, 85, 0.15);
-    min-height: 380px;
+    /* Maintain aspect ratio on tablet */
+    aspect-ratio: 16 / 9;
   }
   
   .content {
@@ -231,11 +236,11 @@
     font-size: 11px;
   }
   
-  /* Bounded image height to prevent full-screen takeover */
+  /* Show full image on mobile with proper aspect ratio */
   .imageWrapper {
-    height: 260px; /* Perfectly centered in the 240px-300px range */
-    min-height: 240px;
-    max-height: 300px;
+    aspect-ratio: 16 / 9;
+    min-height: unset;
+    max-height: unset;
   }
   
   .cardLabel {
